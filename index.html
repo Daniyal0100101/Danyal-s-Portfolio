@@ -1,0 +1,736 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <!-- Meta Tags -->
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta
+      name="description"
+      content="Daniyal Asif's portfolio showcasing web development, Python programming, and AI-powered applications."
+    />
+    <meta
+      name="keywords"
+      content="web developer, Python developer, portfolio, AI, FastAPI, Flask, JavaScript"
+    />
+    <meta name="author" content="Daniyal Asif" />
+
+    <!-- Open Graph / Social Media Meta Tags -->
+    <meta
+      property="og:title"
+      content="Daniyal Asif | Web Developer Portfolio"
+    />
+    <meta
+      property="og:description"
+      content="Web Developer with expertise in Python and AI-powered applications."
+    />
+    <meta
+      property="og:image"
+      content="https://example.com/images/portfolio-preview.jpg"
+    />
+    <meta property="og:type" content="website" />
+
+    <title>Daniyal Asif | Web Developer Portfolio</title>
+
+    <!-- Favicon - TODO: Replace with your actual favicon files -->
+    <link rel="icon" href="images/favicon.ico" type="image/x-icon" />
+    <link rel="shortcut icon" href="images/favicon.ico" type="image/x-icon" />
+    <link rel="apple-touch-icon" sizes="180x180" href="apple-touch-icon.png" />
+    <link
+      rel="icon"
+      type="image/png"
+      sizes="32x32"
+      href="images/favicon-32x32.png"
+    />
+    <link
+      rel="icon"
+      type="image/png"
+      sizes="16x16"
+      href="images/favicon-16x16.png"
+    />
+
+    <!-- Google Fonts -->
+    <link
+      href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;600&display=swap"
+      rel="stylesheet"
+    />
+
+    <!-- Font Awesome Icons -->
+    <link
+      rel="stylesheet"
+      href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css"
+      integrity="sha512-iecdLmaskl7CVkqkXNQ/ZH/XLlvWZOJyj7Yy7tcenmpD1ypASozpmT/E0iPtmFIB46ZmdtAc9eNBvH0H/ZpiBw=="
+      crossorigin="anonymous"
+      referrerpolicy="no-referrer"
+    />
+
+    <!-- AOS Library for animations -->
+    <link rel="stylesheet" href="https://unpkg.com/aos@next/dist/aos.css" />
+
+    <!-- Main CSS -->
+    <link rel="stylesheet" href="style.css" />
+
+    <!-- Additional Timeline CSS -->
+    <style>
+      /* Timeline fixes */
+      .timeline-container {
+        position: relative;
+        max-width: 1200px;
+        margin: 40px auto;
+      }
+
+      .timeline-center-line {
+        position: absolute;
+        width: 4px;
+        background-color: var(--color-primary);
+        top: 0;
+        bottom: 0;
+        left: 50%;
+        margin-left: -2px;
+        z-index: 0;
+      }
+
+      .timeline-box {
+        padding: 20px 40px;
+        position: relative;
+        background-color: var(--color-container-bg);
+        width: 44%;
+        margin-bottom: 30px;
+        border-radius: 8px;
+        box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+      }
+
+      .timeline-left {
+        left: 0;
+        text-align: right;
+      }
+
+      .timeline-right {
+        left: 56%;
+        text-align: left;
+      }
+
+      .timeline-box::after {
+        content: "";
+        position: absolute;
+        width: 20px;
+        height: 20px;
+        background-color: var(--color-primary);
+        border: 4px solid var(--color-container-bg);
+        top: 15px;
+        border-radius: 50%;
+        z-index: 1;
+      }
+
+      .timeline-left::after {
+        right: -12px;
+      }
+
+      .timeline-right::after {
+        left: -12px;
+      }
+
+      @media (max-width: 768px) {
+        .timeline-box {
+          width: 100%;
+          padding-left: 70px;
+          padding-right: 25px;
+          text-align: left;
+        }
+
+        .timeline-left,
+        .timeline-right {
+          left: 0;
+        }
+
+        .timeline-center-line {
+          left: 40px;
+        }
+
+        .timeline-left::after,
+        .timeline-right::after {
+          left: 28px;
+        }
+      }
+
+      /* Enable smooth scrolling for better UX */
+      html {
+        scroll-behavior: smooth;
+      }
+
+      /* Add better focus for accessibility */
+      a:focus,
+      button:focus,
+      input:focus,
+      textarea:focus {
+        outline: 2px solid var(--color-primary);
+        outline-offset: 2px;
+      }
+
+      /* Improved visuals for the skills section */
+      .skills-grid {
+        display: grid;
+        grid-template-columns: repeat(auto-fit, minmax(160px, 1fr));
+        gap: 30px;
+        justify-items: center;
+        align-items: center;
+        margin-bottom: 20px;
+      }
+
+      @media (max-width: 768px) {
+        .skills-grid {
+          grid-template-columns: repeat(3, 1fr);
+          gap: 40px 20px;
+        }
+      }
+
+      @media (max-width: 576px) {
+        .skills-grid {
+          grid-template-columns: repeat(2, 1fr);
+        }
+      }
+    </style>
+
+    <!-- GSAP for Smooth Animations (Optional) -->
+    <script
+      src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.10.4/gsap.min.js"
+      integrity="sha512-VEBjfxWUOyzl0bAwh4gdLEaQyDYPvLrZql3pw1ifgb6fhEvZl9iDDehwHZ+dsMzA0Jfww8Xt7COSZuJ/slxc4Q=="
+      crossorigin="anonymous"
+      referrerpolicy="no-referrer"
+    ></script>
+
+    <!-- EmailJS for Contact Form -->
+    <script src="https://cdn.jsdelivr.net/npm/@emailjs/browser@3/dist/email.min.js"></script>
+    <script>
+      (function () {
+        emailjs.init("2NuFlks6i9Agwz1bo");
+      })();
+    </script>
+  </head>
+
+  <body>
+    <!-- Preloader -->
+    <div class="preloader" id="preloader">
+      <div class="spinner"></div>
+    </div>
+
+    <!-- ================= HEADER / PARALLAX / NAV ================= -->
+    <header id="home" class="parallax-header">
+      <!-- Light/Dark Theme Toggle -->
+      <div
+        class="theme-toggle"
+        onclick="toggleTheme()"
+        aria-label="Toggle Theme"
+      >
+        <i id="themeIcon" class="fas fa-sun"></i>
+      </div>
+
+      <!-- Parallax BG & Overlay -->
+      <img
+        src="images/flat-lay-workstation-with-copy-space-laptop_23-2148430879.jpg"
+        alt="Overhead workstation background"
+        class="header-bg"
+      />
+      <div class="header-overlay"></div>
+
+      <!-- Animated Floating Shapes (mouse-based) -->
+      <div class="floating-shape shape-1"></div>
+      <div class="floating-shape shape-2"></div>
+
+      <!-- Heading Text -->
+      <div class="heading-text">
+        <h1 id="typewriter"></h1>
+        <p class="subtitle">
+          Web Developer with AI-Powered Expertise | Lahore, Pakistan
+        </p>
+      </div>
+
+      <!-- Navigation -->
+      <nav class="navbar">
+        <div class="menu-toggle" onclick="toggleNav()" aria-label="Menu Toggle">
+          <div class="bar1"></div>
+          <div class="bar2"></div>
+          <div class="bar3"></div>
+        </div>
+        <ul id="navbar">
+          <li>
+            <a
+              href="#home"
+              class="nav-link active-link"
+              onclick="toggleNavIfMobile()"
+              >Home</a
+            >
+          </li>
+          <li>
+            <a href="#about" class="nav-link" onclick="toggleNavIfMobile()"
+              >About</a
+            >
+          </li>
+          <li>
+            <a href="#projects" class="nav-link" onclick="toggleNavIfMobile()"
+              >Projects</a
+            >
+          </li>
+          <li>
+            <a href="#skills" class="nav-link" onclick="toggleNavIfMobile()"
+              >Skills</a
+            >
+          </li>
+          <li>
+            <a
+              href="#testimonials"
+              class="nav-link"
+              onclick="toggleNavIfMobile()"
+              >Testimonials</a
+            >
+          </li>
+          <li>
+            <a href="#education" class="nav-link" onclick="toggleNavIfMobile()"
+              >Education</a
+            >
+          </li>
+          <li>
+            <a href="#contact" class="nav-link" onclick="toggleNavIfMobile()"
+              >Contact</a
+            >
+          </li>
+        </ul>
+      </nav>
+    </header>
+
+    <!-- ================= ABOUT SECTION ================= -->
+    <section
+      id="about"
+      class="container about-section"
+      data-aos="fade-up"
+      data-aos-duration="800"
+    >
+      <h2>About Me</h2>
+      <div class="about-content">
+        <div class="about-text">
+          <p>
+            I'm <strong>Daniyal Asif</strong>, a passionate Web Developer with
+            expertise in Python and AI-powered applications. Self-taught and
+            continuously expanding skills in FastAPI, Flask, and frontend
+            technologies (HTML, CSS, JavaScript).
+          </p>
+          <p>
+            Based in <strong>Lahore, Punjab, Pakistan</strong>, I focus on
+            developing innovative web solutions and integrating AI capabilities
+            into applications. I've developed multiple real-world projects
+            including AI-powered chatbots, a YouTube video summarizer, and
+            various web tools.
+          </p>
+        </div>
+        <div class="about-contact">
+          <h3>Contact Details</h3>
+          <ul>
+            <li><i class="fas fa-envelope"></i> dasif1477@gmail.com</li>
+            <li><i class="fas fa-phone"></i> +92 328 9287491</li>
+            <li>
+              <i class="fab fa-github"></i>
+              <a
+                href="https://github.com/Daniyal0100101"
+                target="_blank"
+                rel="noopener"
+                >github.com/Daniyal0100101</a
+              >
+            </li>
+            <li>
+              <i class="fab fa-linkedin"></i>
+              <a
+                href="https://linkedin.com/in/daniyal-asif"
+                target="_blank"
+                rel="noopener"
+                >linkedin.com/in/daniyal-asif</a
+              >
+            </li>
+          </ul>
+        </div>
+      </div>
+    </section>
+
+    <!-- ================= PROJECTS SECTION (CAROUSEL) ================= -->
+    <section
+      id="projects"
+      class="container projects-section"
+      data-aos="fade-up"
+      data-aos-duration="800"
+    >
+      <h2>Projects</h2>
+      <!-- Carousel Wrapper -->
+      <div class="carousel">
+        <!-- Carousel Track (Slides) -->
+        <div class="carousel-track">
+          <div class="project-slide">
+            <h3>AI-Powered YouTube Video Summarizer</h3>
+            <p>
+              A web application that fetches transcripts, summarizes content
+              using Gemini API, and supports follow-up queries about the video
+              content.
+            </p>
+            <div class="project-tech">
+              <span>Python</span>
+              <span>FastAPI</span>
+              <span>Gemini AI</span>
+            </div>
+          </div>
+          <div class="project-slide">
+            <h3>Next Gen Search</h3>
+            <p>
+              A multi-search engine tool that allows users to enter a query and
+              select from different search engines, redirecting their search
+              without any API integration.
+            </p>
+            <div class="project-tech">
+              <span>HTML</span>
+              <span>CSS</span>
+              <span>JavaScript</span>
+            </div>
+          </div>
+          <div class="project-slide">
+            <h3>Web Chat App</h3>
+            <p>
+              A real-time chat application built using Python backend, allowing
+              users to communicate instantly through a web interface.
+            </p>
+            <div class="project-tech">
+              <span>Python</span>
+              <span>WebSockets</span>
+              <span>JavaScript</span>
+            </div>
+          </div>
+          <div class="project-slide">
+            <h3>Portfolio Website</h3>
+            <p>
+              A responsive portfolio website built with modern web technologies
+              to showcase my skills, projects, and professional experience.
+            </p>
+            <div class="project-tech">
+              <span>HTML</span>
+              <span>CSS</span>
+              <span>JavaScript</span>
+            </div>
+          </div>
+        </div>
+
+        <!-- Carousel Arrows -->
+        <button class="carousel-arrow arrow-left" onclick="slideProject(-1)">
+          <i class="fas fa-chevron-left"></i>
+        </button>
+        <button class="carousel-arrow arrow-right" onclick="slideProject(1)">
+          <i class="fas fa-chevron-right"></i>
+        </button>
+
+        <!-- Carousel Indicators -->
+        <div class="carousel-indicators">
+          <span
+            class="indicator active-indicator"
+            onclick="goToProjectSlide(0)"
+          ></span>
+          <span class="indicator" onclick="goToProjectSlide(1)"></span>
+          <span class="indicator" onclick="goToProjectSlide(2)"></span>
+          <span class="indicator" onclick="goToProjectSlide(3)"></span>
+        </div>
+      </div>
+    </section>
+
+    <!-- ==================== SKILLS SECTION (CIRCULAR PROGRESS) ==================== -->
+    <section
+      id="skills"
+      class="container skills-section"
+      data-aos="fade-up"
+      data-aos-duration="800"
+    >
+      <h2>Skills</h2>
+      <div class="skills-grid">
+        <div class="skill-circle" data-value="90" data-title="Python">
+          <div></div>
+        </div>
+        <div class="skill-circle" data-value="85" data-title="FastAPI/Flask">
+          <div></div>
+        </div>
+        <div class="skill-circle" data-value="80" data-title="HTML/CSS">
+          <div></div>
+        </div>
+        <div class="skill-circle" data-value="75" data-title="JavaScript">
+          <div></div>
+        </div>
+        <div class="skill-circle" data-value="85" data-title="Git/GitHub">
+          <div></div>
+        </div>
+        <div class="skill-circle" data-value="80" data-title="AI Integration">
+          <div></div>
+        </div>
+      </div>
+
+      <div class="additional-skills">
+        <h3>Additional Technical Skills</h3>
+        <ul>
+          <li><i class="fas fa-check-circle"></i> REST API Development</li>
+          <li><i class="fas fa-check-circle"></i> Linux & Bash Scripting</li>
+          <li>
+            <i class="fas fa-check-circle"></i> Problem-Solving & Debugging
+          </li>
+          <li><i class="fas fa-check-circle"></i> Responsive Web Design</li>
+        </ul>
+      </div>
+    </section>
+
+    <!-- ================= TESTIMONIALS SECTION ================= -->
+    <section
+      id="testimonials"
+      class="container testimonials-section"
+      data-aos="fade-up"
+      data-aos-duration="800"
+    >
+      <h2>Testimonials</h2>
+      <div class="testimonial-grid">
+        <div class="testimonial" data-aos="fade-up" data-aos-delay="100">
+          <div class="quote-icon"><i class="fas fa-quote-left"></i></div>
+          <p>
+            "Daniyal's ability to solve complex problems with creative solutions
+            is impressive. His integration of AI capabilities into web
+            applications delivered exactly what our project needed."
+          </p>
+          <div class="testimonial-author">
+            <img
+              src="https://randomuser.me/api/portraits/men/32.jpg"
+              alt="Client"
+              class="author-image"
+            />
+            <div class="author-info">
+              <h4>Alex Smith</h4>
+              <p>Project Manager</p>
+            </div>
+          </div>
+        </div>
+        <div class="testimonial" data-aos="fade-up" data-aos-delay="200">
+          <div class="quote-icon"><i class="fas fa-quote-left"></i></div>
+          <p>
+            "Working with Daniyal was excellent. He understood our requirements
+            for an interactive web application, delivered on time, and exceeded
+            our expectations with additional features."
+          </p>
+          <div class="testimonial-author">
+            <img
+              src="https://randomuser.me/api/portraits/women/44.jpg"
+              alt="Client"
+              class="author-image"
+            />
+            <div class="author-info">
+              <h4>Jamie Collins</h4>
+              <p>UX Designer</p>
+            </div>
+          </div>
+        </div>
+        <div class="testimonial" data-aos="fade-up" data-aos-delay="300">
+          <div class="quote-icon"><i class="fas fa-quote-left"></i></div>
+          <p>
+            "His knowledge of Python and web development is excellent. Our
+            project was completed ahead of schedule and performed better than we
+            anticipated, especially the AI integration components."
+          </p>
+          <div class="testimonial-author">
+            <img
+              src="https://randomuser.me/api/portraits/men/67.jpg"
+              alt="Client"
+              class="author-image"
+            />
+            <div class="author-info">
+              <h4>Morgan Lee</h4>
+              <p>Tech Lead</p>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- ==================== EDUCATION SECTION ==================== -->
+    <section
+      id="education"
+      class="container education-section"
+      data-aos="fade-up"
+      data-aos-duration="800"
+    >
+      <h2>Education & Training</h2>
+
+      <!-- New Timeline Structure -->
+      <div class="timeline-container">
+        <!-- Timeline Center Line -->
+        <div class="timeline-center-line"></div>
+
+        <!-- First timeline box -->
+        <div
+          class="timeline-box timeline-left"
+          data-aos="fade-right"
+          data-aos-duration="800"
+        >
+          <h3>CodeWithHarry YouTube Courses</h3>
+          <p>2022 - Present</p>
+          <p>
+            <strong>Courses:</strong> 100 Days of Web Development, Sigma Web
+            Development
+          </p>
+          <p>
+            Comprehensive training covering front-end and back-end technologies,
+            with hands-on projects and practical coding challenges.
+          </p>
+        </div>
+
+        <!-- Second timeline box -->
+        <div
+          class="timeline-box timeline-right"
+          data-aos="fade-left"
+          data-aos-duration="800"
+          data-aos-delay="100"
+        >
+          <h3>Udemy Web Development Bootcamp</h3>
+          <p>Ongoing</p>
+          <p><strong>Course:</strong> 100 Days of Web Development Boot Camp</p>
+          <p>
+            Intensive training in modern web technologies, covering responsive
+            design, JavaScript frameworks, and backend development with Python.
+          </p>
+        </div>
+      </div>
+
+      <div class="key-strengths">
+        <h3>Key Strengths</h3>
+        <div class="strengths-grid">
+          <div class="strength-card" data-aos="zoom-in" data-aos-delay="100">
+            <i class="fas fa-code-branch"></i>
+            <h4>Problem-Solving</h4>
+            <p>
+              Strong analytical skills for debugging and optimizing
+              applications.
+            </p>
+          </div>
+          <div class="strength-card" data-aos="zoom-in" data-aos-delay="200">
+            <i class="fas fa-sync-alt"></i>
+            <h4>Adaptability</h4>
+            <p>Quickly learns new technologies and applies them effectively.</p>
+          </div>
+          <div class="strength-card" data-aos="zoom-in" data-aos-delay="300">
+            <i class="fas fa-brain"></i>
+            <h4>AI Utilization</h4>
+            <p>Expertise in integrating AI tools into web development.</p>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- ==================== CONTACT SECTION (ADDED) ==================== -->
+    <section
+      id="contact"
+      class="container contact-section"
+      data-aos="fade-up"
+      data-aos-duration="800"
+    >
+      <h2>Contact Me</h2>
+      <p>
+        I'm currently available for freelance projects, collaborations, and job
+        opportunities. Let's discuss how my skills can help bring your ideas to
+        life!
+      </p>
+      <div class="contact-grid">
+        <div class="contact-info">
+          <h3>Direct Contact</h3>
+          <ul class="contact-list">
+            <li><i class="fas fa-envelope"></i> dasif1477@gmail.com</li>
+            <li><i class="fas fa-phone"></i> +92 328 9287491</li>
+            <li>
+              <i class="fas fa-map-marker-alt"></i> Lahore, Punjab, Pakistan
+            </li>
+          </ul>
+          <div class="contact-social">
+            <a
+              href="https://github.com/Daniyal0100101"
+              target="_blank"
+              rel="noopener"
+              ><i class="fab fa-github"></i
+            ></a>
+            <a
+              href="https://linkedin.com/in/daniyal-asif"
+              target="_blank"
+              rel="noopener"
+              ><i class="fab fa-linkedin"></i
+            ></a>
+          </div>
+        </div>
+        <div class="contact-form">
+          <h3>Send a Message</h3>
+          <form id="contactForm" onsubmit="sendEmail(event)">
+            <input
+              type="text"
+              name="from_name"
+              placeholder="Your Name"
+              required
+              aria-label="Your Name"
+            />
+            <input
+              type="email"
+              name="reply_to"
+              placeholder="Your Email"
+              required
+              aria-label="Your Email"
+            />
+            <textarea
+              name="message"
+              rows="5"
+              placeholder="Your Message"
+              required
+              aria-label="Your Message"
+            ></textarea>
+            <button type="submit">Send Message</button>
+          </form>
+        </div>
+      </div>
+    </section>
+
+    <!-- ================= SOCIAL LINKS ================= -->
+    <div class="social-links" data-aos="fade-up">
+      <a
+        href="https://github.com/Daniyal0100101"
+        target="_blank"
+        rel="noopener"
+        aria-label="GitHub"
+      >
+        <i class="fab fa-github"></i>
+      </a>
+      <a
+        href="https://linkedin.com/in/daniyal-asif"
+        target="_blank"
+        rel="noopener"
+        aria-label="LinkedIn"
+      >
+        <i class="fab fa-linkedin"></i>
+      </a>
+    </div>
+
+    <!-- ================= FOOTER ================= -->
+    <footer>
+      <p>&copy; 2023 Daniyal Asif. All Rights Reserved.</p>
+      <p>
+        <a href="#home">Home</a> | <a href="#about">About</a> |
+        <a href="#projects">Projects</a> | <a href="#skills">Skills</a> |
+        <a href="#testimonials">Testimonials</a> |
+        <a href="#education">Education</a> |
+        <a href="#contact">Contact</a>
+      </p>
+    </footer>
+
+    <!-- AOS Library Initialization -->
+    <script src="https://unpkg.com/aos@next/dist/aos.js"></script>
+    <script>
+      document.addEventListener("DOMContentLoaded", function () {
+        AOS.init({
+          duration: 800,
+          once: true,
+        });
+      });
+    </script>
+
+    <!-- ========== MAIN SCRIPT ========== -->
+    <script src="script.js"></script>
+  </body>
+</html>
