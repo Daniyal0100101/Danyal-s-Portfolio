@@ -216,13 +216,14 @@
     <!-- ================= HEADER / PARALLAX / NAV ================= -->
     <header id="home" class="parallax-header">
       <!-- Light/Dark Theme Toggle -->
-      <div
-        class="theme-toggle"
-        onclick="toggleTheme()"
-        aria-label="Toggle Theme"
+      <button 
+        class="theme-toggle" 
+        onclick="toggleTheme()" 
+        aria-label="Toggle between dark and light theme" 
+        title="Toggle Theme"
       >
-        <i id="themeIcon" class="fas fa-sun"></i>
-      </div>
+        <i id="themeIcon" class="fas fa-sun" aria-hidden="true"></i>
+      </button>
 
       <!-- Parallax BG & Overlay -->
       <img
@@ -721,15 +722,7 @@
 
     <!-- AOS Library Initialization -->
     <script src="https://unpkg.com/aos@next/dist/aos.js"></script>
-    <script>
-      document.addEventListener("DOMContentLoaded", function () {
-        AOS.init({
-          duration: 800,
-          once: true,
-        });
-      });
-    </script>
-
+    
     <!-- ========== MAIN SCRIPT ========== -->
     <script src="script.js"></script>
   </body>
