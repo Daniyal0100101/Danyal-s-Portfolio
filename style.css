@@ -541,9 +541,14 @@ body.light-theme .menu-toggle.active div {
 
 /* Smaller screens */
 @media (max-width: 480px) {
+
+  .navbar {
+    visibility: hidden;
+  }
+  
   .navbar ul li a {
-    padding: 12px;
-    font-size: 1em;
+    height: 12px;
+    width: 12px;
   }
 
   .contact-info,
